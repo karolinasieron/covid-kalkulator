@@ -41,14 +41,15 @@ public class ExposureNotificationAppSkeleton {
 				break;
 			case MENU_ISEXPOSURE: // 3
 				checkCalcExists();
-				boolean isExposedToHighRisk = true; // TODO: check is there is a high infection risk according to the current ExposureNotificationCalculator
+				boolean isExposedToHighRisk = ; // TODO: check is there is a high infection risk according to the current ExposureNotificationCalculator
 				System.out.println("You are exposed to " + (isExposedToHighRisk ? "HIGH" : "NO") + " risk.");
 				break;
 			case MENU_PRINT: //4
 				if (currentExposureNotificationCalculator == null) {
 					System.out.println("You have not created an Exposure Calculator, yet.");
+					newExposureNotificationCalculatorDialog();
 				} else {
-					String exposureNotificationCalculatorSummary = "test"; // TODO: get the current ExposureNotificationCalculator's summary
+					String exposureNotificationCalculatorSummary = ; // TODO: get the current ExposureNotificationCalculator's summary
 					System.out.println(exposureNotificationCalculatorSummary);
 				}
 				break;
@@ -65,15 +66,18 @@ public class ExposureNotificationAppSkeleton {
 	 * 
 	 * @param type of the selected add action
 	 */
-	private static void doAddAction(int type) {
+	private static void doAddAction(int type) { // 0, 1 or 2
 		switch (type) {
 		case MENU_CONTACT_NO: // 0
+			Contact contactNo = new Contact("NO", CONTACT_SPEC_NO_VALUE);
 			// TODO: add the NO-risk contact to the current ExposureNotificationCalculator
 			break;
 		case MENU_CONTACT_LOW: // 1
+			Contact contactLow = new Contact("LOW", CONTACT_SPEC_LOW_VALUE);
 			// TODO: add the LOW-risk contact to the current ExposureNotificationCalculator
 			break;
 		case MENU_CONTACT_HIGH: // 2
+			Contact contactHigh = new Contact("HIGH", CONTACT_SPEC_HIGH_VALUE);
 			// TODO: add the HIGH-risk contact to the current ExposureNotificationCalculator
 			break;
 		}
@@ -92,7 +96,14 @@ public class ExposureNotificationAppSkeleton {
 		while (!contactTypeExists) {
 			System.out.println("Which contact type do you want to add? (0: NO risk; 1: LOW risk, 2: HIGH risk)");
 			chosenContactType = Input.readInt();
-			contactTypeExists = ;// TODO: check if contact type exists according to the constants
+			if(chosenContactType == 0 || chosenContactType == 1 || chosenContactType == 2){
+				contactTypeExists = true;
+			}
+			else{
+				System.out.println("Wrong type, try again!");
+				continue;
+			}
+			// contactTypeExists = ;// TODO: check if contact type exists according to the constants
 		}
 		return chosenContactType;
 	}
