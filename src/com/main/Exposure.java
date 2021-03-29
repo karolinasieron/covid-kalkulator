@@ -2,16 +2,26 @@ package com.main;
 
 public class Exposure {
     // Data.
-    int contactDays;
-    Contact[] contacts;
+    private int contactDays;
+   private Contact[] contacts;
 
     // Constructor.
     public Exposure(int contactDays){
         this.contactDays = contactDays;
+        contacts = new Contact [this.contactDays];
         // TODO: Make dynamic array which length is equal to contactDays.
     }
+public String getSummary() {
+        return "test";
+}
+public int getContactDays () {
+        return contactDays;
+}
 
-    // TODO: Make functions from instruction!!!
+    public Contact[] getContacts() {
+        return contacts;
+    }
+// TODO: Make functions from instruction!!!
 
 }
 //test gita
