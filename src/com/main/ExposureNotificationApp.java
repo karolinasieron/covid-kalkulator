@@ -5,7 +5,7 @@ package com.main;
  * @author Prof. Dr. Stefan Kugele, Technische Hochschule Ingolstadt
  * @version 2021-03-23
  */
-public class ExposureNotificationAppSkeleton {
+public class ExposureNotificationApp {
 
 	/**
 	 * Please note: The CONTACT_SPEC_* "constants" are not final, but only for
@@ -41,7 +41,7 @@ public class ExposureNotificationAppSkeleton {
 				break;
 			case MENU_ISEXPOSURE: // 3
 				checkCalcExists();
-				boolean isExposedToHighRisk = ; // TODO: check is there is a high infection risk according to the current ExposureNotificationCalculator
+				boolean isExposedToHighRisk = currentExposureNotificationCalculator.isExposure(); // TODO: check is there is a high infection risk according to the current ExposureNotificationCalculator
 				System.out.println("You are exposed to " + (isExposedToHighRisk ? "HIGH" : "NO") + " risk.");
 				break;
 			case MENU_PRINT: //4
@@ -49,7 +49,7 @@ public class ExposureNotificationAppSkeleton {
 					System.out.println("You have not created an Exposure Calculator, yet.");
 					newExposureNotificationCalculatorDialog();
 				} else {
-					String exposureNotificationCalculatorSummary = ; // TODO: get the current ExposureNotificationCalculator's summary
+					String exposureNotificationCalculatorSummary = currentExposureNotificationCalculator.getSummary(); // TODO: get the current ExposureNotificationCalculator's summary
 					System.out.println(exposureNotificationCalculatorSummary);
 				}
 				break;
@@ -70,15 +70,15 @@ public class ExposureNotificationAppSkeleton {
 		switch (type) {
 		case MENU_CONTACT_NO: // 0
 			Contact contactNo = new Contact("NO", CONTACT_SPEC_NO_VALUE);
-			// TODO: add the NO-risk contact to the current ExposureNotificationCalculator
+			currentExposureNotificationCalculator.addNoRiskContact(contactNo);
 			break;
 		case MENU_CONTACT_LOW: // 1
 			Contact contactLow = new Contact("LOW", CONTACT_SPEC_LOW_VALUE);
-			// TODO: add the LOW-risk contact to the current ExposureNotificationCalculator
+			currentExposureNotificationCalculator.addLowRiskContact(contactLow);
 			break;
 		case MENU_CONTACT_HIGH: // 2
 			Contact contactHigh = new Contact("HIGH", CONTACT_SPEC_HIGH_VALUE);
-			// TODO: add the HIGH-risk contact to the current ExposureNotificationCalculator
+			currentExposureNotificationCalculator.addHighRiskContact(contactHigh);
 			break;
 		}
 	}
@@ -138,7 +138,7 @@ public class ExposureNotificationAppSkeleton {
 			days = Input.readInt();
 		} while (days <= 0 || days > 14);
 
-		currentExposureNotificationCalculator = ; // TODO: initialize new ExposureNotificationCalculator object with the specified property days
+		currentExposureNotificationCalculator = new ExposureNotificationCalculator(days); // TODO: initialize new ExposureNotificationCalculator object with the specified property days
 	}
 
 }
