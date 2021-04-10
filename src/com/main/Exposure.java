@@ -17,18 +17,32 @@ public class Exposure {
                 String summary = contacts[i].getSummary();
                 return "Day" + contacts[i]+ ": [Typ:" + summary + "]";
             }
-                return null;
+            return null;
     }
 
     public int getContactDays () {
             return contactDays;
     }
 
-
     public Contact[] getContacts() {
         return contacts;
     }
-// TODO: Make addContact method!!!
+
+    public void setContacts(Contact[] contacts) {
+        this.contacts = contacts;
+    }
+
+    public void addContact(Contact contact){
+        Contact[] contactsBefore = getContacts();
+        int length = getContactDays();
+        Contact[] contactsAfter = new Contact[length];
+
+        for(int i = 1; i<length; i++){
+            contactsAfter[i]=contactsBefore[i-1];
+        }
+        contactsAfter[0] = contact;
+
+        setContacts(contactsAfter);
+    }
 
 }
-//test gita

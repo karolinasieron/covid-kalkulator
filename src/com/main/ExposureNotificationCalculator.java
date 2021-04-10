@@ -46,19 +46,19 @@ public class ExposureNotificationCalculator {
         int exposureDays = exposure.getContactDays();
         float risk = 0f;
 
-        for(int i = 1; i<=exposureDays; i++){
+        for(int i = 0; i<exposureDays; i++){
             float contactRisk = contacts[i].getContactRisk();
             float temporary = 0f;
             if(i == 1){
-                temporary = contactRisk*ExposureNotificationAppSkeleton.TRL_6*0.2f;
+                temporary = contactRisk*ExposureNotificationApp.TRL_6*0.2f;
             } else if(i>1 && i<5){
-                temporary = contactRisk*ExposureNotificationAppSkeleton.TRL_8*0.2f;
+                temporary = contactRisk*ExposureNotificationApp.TRL_8*0.2f;
             } else if(i == 5){
-                temporary = contactRisk*ExposureNotificationAppSkeleton.TRL_5*0.2f;
+                temporary = contactRisk*ExposureNotificationApp.TRL_5*0.2f;
             } else if(i == 6){
-                temporary = contactRisk*ExposureNotificationAppSkeleton.TRL_3*0.2f;
+                temporary = contactRisk*ExposureNotificationApp.TRL_3*0.2f;
             } else if(i>7){
-                temporary = contactRisk*ExposureNotificationAppSkeleton.TRL_1*0.2f;
+                temporary = contactRisk*ExposureNotificationApp.TRL_1*0.2f;
             }
             risk = risk + temporary;
         }
