@@ -47,7 +47,12 @@ public class ExposureNotificationCalculator {
         float risk = 0f;
 
         for(int i = 0; i<exposureDays; i++){
-            float contactRisk = contacts[i].getContactRisk();
+            float contactRisk;
+
+            if(contacts[i] == null){
+                contactRisk = 0f;
+            } else  contactRisk = contacts[i].getContactRisk();
+
             float temporary = 0f;
             if(i == 1){
                 temporary = contactRisk*ExposureNotificationApp.TRL_6*0.2f;
@@ -76,11 +81,13 @@ public class ExposureNotificationCalculator {
         //ExposureNotificationCalculator: [Exposure: yes (Weighted Exposure Sum = 1.12)]
         float riskSum = getWeightedExposureSum();
         boolean isExposure = isExposure();
-
+        String previousSummary = exposure.getSummary();
         if(isExposure == true){
-            return "ExposureNotificationCalculator: [Exposure: yes (Weighted Exposure Sum = "+riskSum+")]";
+            String summary =  "ExposureNotificationCalculator: [Exposure: yes (Weighted Exposure Sum = "+riskSum+")]";
+            return summary + "\n" + previousSummary;
         } else {
-            return "ExposureNotificationCalculator: [Exposure: no (Weighted Exposure Sum = "+riskSum+")]";
+            String summary = "ExposureNotificationCalculator: [Exposure: no (Weighted Exposure Sum = "+riskSum+")]";
+            return summary + "\n" + previousSummary;
         }
     }
 }

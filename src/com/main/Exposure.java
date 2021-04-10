@@ -12,12 +12,20 @@ public class Exposure {
     }
 
     public String getSummary() {
-            System.out.println ("Exposure: [Time horizon:" +contactDays+ "day(s)]");
-            for (int i = 1; i<contactDays; i++) {
-                String summary = contacts[i].getSummary();
-                return "Day" + contacts[i]+ ": [Typ:" + summary + "]";
-            }
-            return null;
+        System.out.println ("Exposure: [Time horizon: " +contactDays+ " day(s)]");
+        String summaryToReturn = "";
+
+        for (int i = 1; i<contactDays+1; i++) {
+            String summaryOfContact;
+
+            if(contacts[i-1] == null){
+                summaryOfContact = "---";
+            } else summaryOfContact = contacts[i-1].getSummary();
+
+            String summary = "Day" + i + ": " + summaryOfContact;
+            summaryToReturn = summaryToReturn + summary + "\n";
+        }
+        return summaryToReturn;
     }
 
     public int getContactDays () {
