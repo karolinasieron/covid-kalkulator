@@ -69,16 +69,13 @@ public class ExposureNotificationApp {
 	private static void doAddAction(int type) { // 0, 1 or 2
 		switch (type) {
 		case MENU_CONTACT_NO: // 0
-			Contact contactNo = new Contact("NO", CONTACT_SPEC_NO_VALUE);
-			currentExposureNotificationCalculator.addNoRiskContact(contactNo);
+			currentExposureNotificationCalculator.addNoRiskContact();
 			break;
 		case MENU_CONTACT_LOW: // 1
-			Contact contactLow = new Contact("LOW", CONTACT_SPEC_LOW_VALUE);
-			currentExposureNotificationCalculator.addLowRiskContact(contactLow);
+			currentExposureNotificationCalculator.addLowRiskContact();
 			break;
 		case MENU_CONTACT_HIGH: // 2
-			Contact contactHigh = new Contact("HIGH", CONTACT_SPEC_HIGH_VALUE);
-			currentExposureNotificationCalculator.addHighRiskContact(contactHigh);
+			currentExposureNotificationCalculator.addHighRiskContact();
 			break;
 		}
 	}

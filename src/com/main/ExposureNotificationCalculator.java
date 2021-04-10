@@ -29,15 +29,18 @@ public class ExposureNotificationCalculator {
     }
 
     //Methods
-    public void addHighRiskContact(Contact contact){
+    public void addHighRiskContact(){
+        Contact contact = new Contact("HIGH", ExposureNotificationApp.CONTACT_SPEC_HIGH_VALUE);
         exposure.addContact(contact);
     }
 
-    public void addLowRiskContact(Contact contact){
+    public void addLowRiskContact(){
+        Contact contact = new Contact("LOW", ExposureNotificationApp.CONTACT_SPEC_LOW_VALUE);
         exposure.addContact(contact);
     }
 
-    public void addNoRiskContact(Contact contact){
+    public void addNoRiskContact(){
+        Contact contact = new Contact("NO", ExposureNotificationApp.CONTACT_SPEC_NO_VALUE);
         exposure.addContact(contact);
     }
 
